@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="header">
+    <div class="header-bar flex-div">
+      <div class="header-bar_left flex-div">
+        <img src="../../assets/images/home.svg" alt="Home icon" />
+        <span>Funny Movies</span>
+      </div>
+
+      <div class="header-bar_right flex-div" *ngIf="!userLogin()">
+        <input (change)="onEmailChange($event)" type="text" placeholder="email" autocomplete="nope" />
+        <input (change)="onPasswordChange($event)" type="password" placeholder="password" autocomplete="nope" />
+        <button (click)="loginAction($event)">Login/Register</button>
+      </div>
+
+      <div class="header-bar_right flex-div width-30" *ngIf="userLogin()">
+        <span class="welcome-user">Welcome {{getLoginEmail()}}</span>
+        <button (click)="shareVideo($event)">Share a movie</button>
+        <button (click)="logoutAction($event)">Logout</button>
+      </div>
+    </div>
+    <div class="break"></div>
+  </div>
+  <div class="content">
+    <app-video-list [list]="sharedVideoList"></app-video-list>
+  </div>
+  <div class="footer flex-div">
+    <div class="break"></div>
+    <span>&copy; Hoang Hoa</span>
+  </div>
+</div>

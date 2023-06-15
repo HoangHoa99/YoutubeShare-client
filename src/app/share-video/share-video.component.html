@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="header">
+    <div class="header-bar flex-div">
+      <div class="header-bar_left flex-div">
+        <img src="../../assets/images/home.svg" alt="Home icon" />
+        <span>Funny Movies</span>
+      </div>
+
+      <div class="header-bar_right flex-div width-30">
+        <span class="welcome-user">Welcome {{ getLoginEmail() }}</span>
+        <button (click)="shareVideo($event)">Share a movie</button>
+        <button (click)="logoutAction($event)">Logout</button>
+      </div>
+    </div>
+    <div class="break"></div>
+  </div>
+  <div class="content">
+    <div class="share-video-container">
+      <fieldset>
+        <legend>Share a Youtube movie</legend>
+        <div class="url-input flex-div">
+          <label for="ytb-url">Youtube URL:</label>
+          <input (change)="onLinkChange($event)" type="text" id="ytb-url" name="ytb-url" />
+        </div>
+        <button (click)="share($event)">Share</button>
+      </fieldset>
+    </div>
+  </div>
+  <div class="footer flex-div">
+    <div class="break"></div>
+    <span>&copy; Hoang Hoa</span>
+  </div>
+</div>
