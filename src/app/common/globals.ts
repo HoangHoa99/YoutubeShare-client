@@ -18,8 +18,8 @@ export const SERVER_URL_MAP = new Map<SERVER_URL, string>([
 
 
 
-export const SERVER_ENDPOINT: string = 'http://localhost:8080';
-// export const SERVER_ENDPOINT: string = 'http://18.143.94.74:8080';
+// export const SERVER_ENDPOINT: string = 'http://localhost:8080';
+export const SERVER_ENDPOINT: string = 'http://54.169.142.168:8080';
 
 export class LoginResponse {
     private error: boolean = false;
