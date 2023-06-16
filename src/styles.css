@@ -102,3 +102,26 @@
   font-weight: 300;
   margin: 20px;
 }
+
+
+@media screen and (max-width: 820px) {
+  .header-bar_right {
+    width: 60%;
+  }
+
+  .header-bar_right input {
+    width: 150px;
+  }
+
+  .header-bar_left {
+    width: 30%;
+  }
+
+  .footer span {
+    margin: 0;
+  }
+
+  .width-30 {
+    width: 60% !important;
+  }
+}
