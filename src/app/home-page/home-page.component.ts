@@ -63,6 +63,10 @@ export class HomePageComponent {
   loginAction(event: any) {
     event.preventDefault();
 
+    if(!this.email || !this.password) {
+      this.notifier.notify('warning', 'Email and password are required!');
+    }
+
     let body = {
       "email": this.email,
       "password": this.password
@@ -79,7 +83,7 @@ export class HomePageComponent {
     let res = new LoginResponse(data);
 
     if (res.getError) {
-      this.notifier.notify('failure', res.getMessage);
+      this.notifier.notify('error', res.getMessage);
       return;
     }
 
@@ -133,5 +137,11 @@ export class HomePageComponent {
     }    
     this.loadSharedVideoList();
     this.notifier.notify('success', data);
+  }
+
+  returnHome(event: any) {
+    event.preventDefault();
+
+    this.router.navigate([`home`]);
   }
 }

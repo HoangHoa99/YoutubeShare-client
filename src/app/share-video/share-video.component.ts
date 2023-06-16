@@ -61,9 +61,15 @@ export class ShareVideoComponent {
 
   handleShareVideoResponse(data: any) {
     if(data.error) {
-      this.notifier.notify('failure', data.message);
+      this.notifier.notify('error', data.message);
       return;
     }
+    this.router.navigate([`home`]);
+  }
+
+  returnHome(event: any) {
+    event.preventDefault();
+
     this.router.navigate([`home`]);
   }
 }
