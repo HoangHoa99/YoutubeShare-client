@@ -12,6 +12,15 @@ export class VideoListComponent {
 
   constructor(private sanitizer: DomSanitizer) {}
 
+  isMobile: boolean = false;
+
+  ngOnInit() {
+    let userAgent = navigator.userAgent;
+    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(userAgent)) {
+      this.isMobile = true;
+    }
+  }
+
   getValue(item: any, key: string) {
     return item[key];
   }
@@ -21,5 +30,19 @@ export class VideoListComponent {
     let url = `https://www.youtube.com/embed/${videoId}`;
     console.log(url);
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  getIframeHeight() {
+    if(this.isMobile) {
+      return 200;
+    }
+    return 316;
+  }
+
+  getIframeWidth() {
+    if(this.isMobile) {
+      return 330;
+    }
+    return 560;
   }
 }

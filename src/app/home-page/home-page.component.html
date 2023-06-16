@@ -6,16 +6,31 @@
         <span>Funny Movies</span>
       </div>
 
-      <div class="header-bar_right flex-div" *ngIf="!userLogin()">
+      <div class="header-bar_right flex-div" *ngIf="!userLogin() && !isMobile">
         <input (change)="onEmailChange($event)" type="text" placeholder="email" autocomplete="nope" />
         <input (change)="onPasswordChange($event)" type="password" placeholder="password" autocomplete="nope" />
         <button (click)="loginAction($event)">Login/Register</button>
       </div>
 
-      <div class="header-bar_right flex-div width-30" *ngIf="userLogin()">
+      <div class="header-bar_right flex-div width-30" *ngIf="userLogin() && !isMobile">
         <span class="welcome-user">Welcome {{getLoginEmail()}}</span>
         <button (click)="shareVideo($event)">Share a movie</button>
         <button (click)="logoutAction($event)">Logout</button>
+      </div>
+
+      <div class="header-bar_right" *ngIf="isMobile">
+        <img src="https://userqrimage.s3.ap-southeast-1.amazonaws.com/menu.svg" alt="Home icon" (click)="unCollapseMenu($event)"/>
+
+        <div class="collapse-menu" *ngIf="!userLogin() && !collapse">
+          <input (change)="onEmailChange($event)" type="text" placeholder="email" autocomplete="nope" />
+          <input (change)="onPasswordChange($event)" type="password" placeholder="password" autocomplete="nope" />
+          <button (click)="loginAction($event)">Login/Register</button>
+        </div>
+
+        <div class="collapse-menu height-150" *ngIf="userLogin() && !collapse">
+          <button (click)="shareVideo($event)">Share a movie</button>
+          <button (click)="logoutAction($event)">Logout</button>
+        </div>
       </div>
     </div>
     <div class="break"></div>

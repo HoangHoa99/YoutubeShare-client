@@ -19,10 +19,13 @@ export class HomePageComponent {
   password: string = '';
   private readonly notifier: NotifierService;
 
-  constructor(private router: Router, 
-    private service: HomePageService, 
-    private notification: NotifierService, 
-    private websocketService: WebSocketShareService, 
+  isMobile: boolean = false;
+  collapse: boolean = true;
+
+  constructor(private router: Router,
+    private service: HomePageService,
+    private notification: NotifierService,
+    private websocketService: WebSocketShareService,
     private webSocketAPI: WebSocketAPI) {
 
     this.notifier = notification;
@@ -32,8 +35,13 @@ export class HomePageComponent {
     // load shared video here
     this.loadSharedVideoList();
 
-    this.webSocketAPI.connect();          
+    this.webSocketAPI.connect();
     this.onNewValueReceive();
+
+    let userAgent = navigator.userAgent;
+    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(userAgent)) {
+      this.isMobile = true;
+    }
   }
 
   loadSharedVideoList() {
@@ -63,7 +71,9 @@ export class HomePageComponent {
   loginAction(event: any) {
     event.preventDefault();
 
-    if(!this.email || !this.password) {
+    this.collapse = !this.collapse;
+
+    if (!this.email || !this.password) {
       this.notifier.notify('warning', 'Email and password are required!');
     }
 
@@ -128,13 +138,13 @@ export class HomePageComponent {
   }
 
   notifyMessage(data: any) {
-    if(!data) {
+    if (!data) {
       return;
     }
 
-    if(!Globals.isUserLogin) {
+    if (!Globals.isUserLogin) {
       return;
-    }    
+    }
     this.loadSharedVideoList();
     this.notifier.notify('success', data);
   }
@@ -143,5 +153,11 @@ export class HomePageComponent {
     event.preventDefault();
 
     this.router.navigate([`home`]);
+  }
+
+  unCollapseMenu(event: any) {
+    event.preventDefault();
+
+    this.collapse = !this.collapse;
   }
 }

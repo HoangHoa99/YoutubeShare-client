@@ -4,8 +4,8 @@
     <div id="video-iframe" class="item-left flex-div">
       <youtube-player
         [videoId]="getValue(item, 'videoId')"
-        [height]="315"
-        [width]="560">
+        [height]="getIframeHeight()"
+        [width]="getIframeWidth()">
       </youtube-player>
     </div>
     <div class="item-right">
