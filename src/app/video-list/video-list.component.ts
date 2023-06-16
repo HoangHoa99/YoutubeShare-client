@@ -16,7 +16,7 @@ export class VideoListComponent {
 
   ngOnInit() {
     let userAgent = navigator.userAgent;
-    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(userAgent)) {
+    if (/Android|iPhone/i.test(userAgent)) {
       this.isMobile = true;
     }
   }
